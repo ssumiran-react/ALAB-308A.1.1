@@ -9,28 +9,45 @@ function increaseCounter(c) {
 
     } catch (error) {
         // Print the error message
-        console.log("Error:", error.message,"\nMaximum call stack size:", counter);
+        console.log("Error:", error.message, "\nMaximum call stack size:", counter);
     }
 }
 
 /////////////////////////////////////////////////////
 //Part 3
 let primeList = [];
-//let output = document.getElementById(output);
+let output = document.getElementById("output");
+const numb = 10000;
+getNumberOfPrime(numb);
 
 function getNumberOfPrime(n) {
-    for (let i = 1; i < n; i++) {
-        if (i == 2) {
-            primeList.push(i);
-            break;
-        }
-        if (i % 2 == 0) {
+    try {
+        if (n > 1) {
+            primeList.push(2);
 
+            for (let i = 3; i < n; i += 2) {
+                if(isPrime(i)){
+                    primeList.push(i);
+                }
+            }
         }
+    } catch (err) {
+        console.log("Error is: ", err);
+    } finally {
+        output.textContent = `The prime number between 1 to ${n} are ${primeList}`;
+        //console.log(primeList);
     }
 
 }
 
+function isPrime(num) {
+    // Check divisors up to the square root of num
+    const limit = Math.sqrt(num);
+    for (let i = 3; i <= limit; i += 2) {
+        if (num % i === 0) return false;
+    }
+    return true;
+}    
 
 /*
 Declare a global counter variable.
