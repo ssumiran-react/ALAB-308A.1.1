@@ -16,12 +16,13 @@ function increaseCounter(c) {
 /////////////////////////////////////////////////////
 //Part 3
 let primeList = [];
-let output = document.getElementById("output");
+let output =document.getElementById("output");
 const numb = 10000;
 getNumberOfPrime(numb);
 
 function getNumberOfPrime(n) {
     try {
+        output.style.display = "block";
         if (n > 1) {
             primeList.push(2);
 
@@ -30,11 +31,16 @@ function getNumberOfPrime(n) {
                     primeList.push(i);
                 }
             }
+            output.textContent = `The prime number between 1 to ${n} are ${primeList}`;
+            setTimeout( ()=>{window.alert ("The calculation is finished.");} , 1000);
+            
+        }else{
+            window.alert ("The number cannot smaller than 2.");
         }
     } catch (err) {
         console.log("Error is: ", err);
     } finally {
-        output.textContent = `The prime number between 1 to ${n} are ${primeList}`;
+        
         //console.log(primeList);
     }
 
